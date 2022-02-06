@@ -3,11 +3,9 @@ import Layout from "../../src/components/layout"
 
 const Details = ({work}) => {
     return(
-        <Layout>
             <div>
                 <h1>Details Page</h1>
             </div>
-        </Layout>
     )
 }
 export default Details 

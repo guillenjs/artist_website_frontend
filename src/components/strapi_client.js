@@ -1,5 +1,5 @@
 
-import BASE_URL from "./constants"
+import {BASE_URL }from "./constants"
 
 export default class StrapiClient{
   constructor() {}
@@ -7,7 +7,7 @@ export default class StrapiClient{
     const res = await fetch(`${BASE_URL}${path} `,{
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${process.env.API_TOKEN}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
         }
     }) 
     // const errorCode = res.ok ? await false : res.error()

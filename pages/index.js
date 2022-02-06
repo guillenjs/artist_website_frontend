@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import BASE_URL from '../src/components/constants'
+import {BASE_URL }from '../src/components/constants'
 import Layout from '../src/components/layout'
 import StrapiClient from '../src/components/strapi_client'
 
