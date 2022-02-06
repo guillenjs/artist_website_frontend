@@ -1,44 +1,45 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import BASE_URL from '../src/components/baseUrl'
+import BASE_URL from '../src/components/constants'
+import Layout from '../src/components/layout'
+import StrapiClient from '../src/components/strapi_client'
 
-export default function Home({errorCode, homepage}) {
+export default function Home({homepage}) {
 
-  if (errorCode === true) return <h1>ERROR</h1>
+  if (!homepage) return <h1>ERROR</h1>
   const {alternativeText, url} = homepage.data.attributes.hompe_photo.data.attributes
 
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Jorge Guillen</title>
-        <meta name="description" content="Jorge Guillen portfolio hompage" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <div className={styles.container}>
+        <Head>
+          <title>Jorge Guillen</title>
+          <meta name="description" content="Jorge Guillen portfolio hompage" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <Image
-            src={`${BASE_URL}` + `${url}`}
-            alt={alternativeText}
-            width={536} 
-            height={750} 
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
-            />
-      <h1>this is the hompage</h1>
-    </div>
+        
+        <Image
+              src={`${BASE_URL}` + `${url}`}
+              alt={alternativeText}
+              width={536} 
+              height={750} 
+              // blurDataURL="data:..." automatically provided
+              // placeholder="blur" // Optional blur-up while loading
+              />
+        <h1>this is the hompage</h1>
+      </div>
   )
 }
 
+const client = new StrapiClient();
 export async function getStaticProps() {
-  // http://localhost:1337/homepage?populate=*
-  const res =  await fetch(`${BASE_URL}/api/homepage?populate=*`) 
-  const errorCode = res.ok ? false : true
-  const homepage = res.ok ? await res.json() : null
-  
+  const homepage = await client.fetchData("/api/homepage?populate=*")
+
   return {
     props: {
-      errorCode,
+      // errorCode,
       homepage
     },
   }
