@@ -1,10 +1,7 @@
 import Link from 'next/link'
-import StrapiClient from './strapi_client'
 import {BASE_URL, TOKEN} from './constants'
 import useSWR from 'swr'
 import styles from '../../styles/Nav.module.css'
-import { useState, useEffect} from 'react'
-import { render } from 'react-dom'
 
 const fetcher = (...args) =>  fetch(...args,{
     method: 'GET',
@@ -25,6 +22,9 @@ export default function NavBar (){
                         <Link href={`/works/${year.attributes.slug}`}>{year.attributes.title}</Link>              
                 ))
     }
+
+    // Need to create method to checl of path is active or check if next.js has a solution for this
+    // Add home link, home path will just be my name on the navigation.
 
         return (
             <div class={styles.navbar}>

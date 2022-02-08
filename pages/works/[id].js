@@ -1,9 +1,14 @@
-import BASE_URL from "../../src/components/constants"
-import Layout from "../../src/components/layout"
+import Head from 'next/head'
 
 const Details = ({work}) => {
     return(
             <div>
+                <Head>
+                    <title>Jorge Guillen</title>
+                    <meta name="description" content="Jorge Guillen portfolio hompage" />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+
                 <h1>Details Page</h1>
             </div>
     )
